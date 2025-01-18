@@ -1,0 +1,766 @@
+[
+  {
+    "ContainingType": "TradingSystemApi.Controllers.InitController",
+    "Method": "CheckInitDataExists",
+    "RelativePath": "api/tradingSystem/init",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.InitController",
+    "Method": "UpdateAdminAccount",
+    "RelativePath": "api/tradingSystem/init",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TradingSystemApi.Models.InitData.UpdateAdminAccountDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.StoreController",
+    "Method": "AddNewStore",
+    "RelativePath": "api/tradingSystem/store",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TradingSystemApi.Models.StoreDto.AddNewStoreDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.StoreController",
+    "Method": "GetAllStoresData",
+    "RelativePath": "api/tradingSystem/store",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TradingSystemApi.Models.StoreDto.StoreDto, TradingSystemApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.StoreController",
+    "Method": "UpdateStoreData",
+    "RelativePath": "api/tradingSystem/store={storeId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TradingSystemApi.Models.StoreDto.AddNewStoreDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.StoreController",
+    "Method": "DeleteStoreById",
+    "RelativePath": "api/tradingSystem/store={storeId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.StoreController",
+    "Method": "GetStoreDataById",
+    "RelativePath": "api/tradingSystem/store={storeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TradingSystemApi.Models.StoreDto.StoreDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.AdressController",
+    "Method": "AddingNewAdress",
+    "RelativePath": "api/tradingSystem/store={storeId}/adress",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TradingSystemApi.Models.AdressDto.AddingNewAdressDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.AdressController",
+    "Method": "GetAllAddressesData",
+    "RelativePath": "api/tradingSystem/store={storeId}/adress",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TradingSystemApi.Models.AdressDto.AdressDto, TradingSystemApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.AdressController",
+    "Method": "UpdateAdressDataById",
+    "RelativePath": "api/tradingSystem/store={storeId}/adress={adressId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TradingSystemApi.Models.AdressDto.UpdateAdressDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "adressId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.AdressController",
+    "Method": "DeleteAdressById",
+    "RelativePath": "api/tradingSystem/store={storeId}/adress={adressId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "adressId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.AdressController",
+    "Method": "GetAdressDataById",
+    "RelativePath": "api/tradingSystem/store={storeId}/adress={adressId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "adressId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TradingSystemApi.Models.AdressDto.AdressDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.CustomerController",
+    "Method": "AddCustomerDataWithNewAdress",
+    "RelativePath": "api/tradingSystem/store={storeId}/customer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TradingSystemApi.Models.Customer.AddCustomerDetailsWithNewAdressDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.CustomerController",
+    "Method": "GetAllCustomersData",
+    "RelativePath": "api/tradingSystem/store={storeId}/customer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TradingSystemApi.Models.Customer.CustomerDto, TradingSystemApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.CustomerController",
+    "Method": "AddCustomerDataWithExistingtAdress",
+    "RelativePath": "api/tradingSystem/store={storeId}/customer/adress={adressId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TradingSystemApi.Models.Customer.AddCustomerDetailsWithExistingtAdressDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "adressId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.CustomerController",
+    "Method": "GetCustomerDataByTaxId",
+    "RelativePath": "api/tradingSystem/store={storeId}/customer/taxId={taxId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "taxId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TradingSystemApi.Models.Customer.CustomerDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.CustomerController",
+    "Method": "UpdateCustomerDataById",
+    "RelativePath": "api/tradingSystem/store={storeId}/customer={customerId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TradingSystemApi.Models.Customer.UpdateCustomerDetailsDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.CustomerController",
+    "Method": "DeleteCustomerById",
+    "RelativePath": "api/tradingSystem/store={storeId}/customer={customerId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.CustomerController",
+    "Method": "GetCustomerDataById",
+    "RelativePath": "api/tradingSystem/store={storeId}/customer={customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "customerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TradingSystemApi.Models.Customer.CustomerDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.SellerController",
+    "Method": "AddSellerDataWithNewAdress",
+    "RelativePath": "api/tradingSystem/store={storeId}/seller",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TradingSystemApi.Models.SellerDto.AddSellerDetailsWithNewAdressDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.SellerController",
+    "Method": "GetAllSellerData",
+    "RelativePath": "api/tradingSystem/store={storeId}/seller",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TradingSystemApi.Models.SellerDto.SellerDto, TradingSystemApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.SellerController",
+    "Method": "AddSellerDataWithExistingtAdress",
+    "RelativePath": "api/tradingSystem/store={storeId}/seller/adress={adressId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TradingSystemApi.Models.SellerDto.AddSellerDetailsWithExistingtAdressDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "adressId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.SellerController",
+    "Method": "GetSellerDataByTaxId",
+    "RelativePath": "api/tradingSystem/store={storeId}/seller/taxId={taxId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "taxId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TradingSystemApi.Models.SellerDto.SellerDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.SellerController",
+    "Method": "UpdateSellerDataById",
+    "RelativePath": "api/tradingSystem/store={storeId}/seller={sellerId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TradingSystemApi.Models.SellerDto.UpdateSellerDetailsDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "sellerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.SellerController",
+    "Method": "DeleteSellerById",
+    "RelativePath": "api/tradingSystem/store={storeId}/seller={sellerId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "sellerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.SellerController",
+    "Method": "GetSellerDataById",
+    "RelativePath": "api/tradingSystem/store={storeId}/seller={sellerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "sellerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TradingSystemApi.Models.SellerDto.SellerDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.CashierController",
+    "Method": "AddNewCashier",
+    "RelativePath": "api/tradingSystem/store={storeId}/seller={sellerId}/cashier",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TradingSystemApi.Models.CashierDto.AddingNewCashierDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "sellerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.CashierController",
+    "Method": "GetAllCashierData",
+    "RelativePath": "api/tradingSystem/store={storeId}/seller={sellerId}/cashier",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "sellerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TradingSystemApi.Models.CashierDto.CashierDto, TradingSystemApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.CashierController",
+    "Method": "UpdateCashierDataById",
+    "RelativePath": "api/tradingSystem/store={storeId}/seller={sellerId}/cashier={cashierId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TradingSystemApi.Models.CashierDto.UpdateCashierDetailsDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "sellerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "cashierId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.CashierController",
+    "Method": "DeleteCashierById",
+    "RelativePath": "api/tradingSystem/store={storeId}/seller={sellerId}/cashier={cashierId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "sellerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "cashierId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.CashierController",
+    "Method": "GetCashierDataById",
+    "RelativePath": "api/tradingSystem/store={storeId}/seller={sellerId}/cashier={cashierId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "sellerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "cashierId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TradingSystemApi.Models.CashierDto.CashierDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

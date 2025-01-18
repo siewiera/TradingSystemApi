@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "LAAsm5eTc9+dbZBvmHvfpIVxgCA9ak0oYD3LixBcXCk=",
+  "Source": "TradingSystemApi",
+  "BasePath": "_content/TradingSystemApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
