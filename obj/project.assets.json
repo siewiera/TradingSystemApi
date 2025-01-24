@@ -8146,32 +8146,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\BPX S Siewiera\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/shiro/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\BPX S Siewiera\\source\\repos\\TradingSystemApi\\TradingSystemApi.csproj",
+      "projectUniqueName": "/Users/shiro/Projekty/TradingSystemApi/TradingSystemApi.csproj",
       "projectName": "TradingSystemApi",
-      "projectPath": "C:\\Users\\BPX S Siewiera\\source\\repos\\TradingSystemApi\\TradingSystemApi.csproj",
-      "packagesPath": "C:\\Users\\BPX S Siewiera\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\BPX S Siewiera\\source\\repos\\TradingSystemApi\\obj\\",
+      "projectPath": "/Users/shiro/Projekty/TradingSystemApi/TradingSystemApi.csproj",
+      "packagesPath": "/Users/shiro/.nuget/packages/",
+      "outputPath": "/Users/shiro/Projekty/TradingSystemApi/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\BPX S Siewiera\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/shiro/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -8189,8 +8181,7 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -8254,7 +8245,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.405/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
@@ -8263,7 +8254,7 @@
       "code": "NU1603",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Wersja System.Net.Mail 1.0.0-rtm-00002 jest zależna od System.Data.Common (>= 4.0.1), ale nie znaleziono System.Data.Common 4.0.1. Zamiast tego rozwiązano System.Data.Common 4.1.0.",
+      "message": "System.Net.Mail 1.0.0-rtm-00002 depends on System.Data.Common (>= 4.0.1) but System.Data.Common 4.0.1 was not found. An approximate best match of System.Data.Common 4.1.0 was resolved.",
       "libraryId": "System.Data.Common",
       "targetGraphs": [
         "net8.0"

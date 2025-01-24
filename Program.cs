@@ -20,8 +20,8 @@ try
     var builder = WebApplication.CreateBuilder(args);
 
     builder.Services.AddControllers();
-    string[] connectionType = { "PrivateConnection", "BusinessConnection" };
-    builder.Services.AddDbContext<TradingSystemDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString(connectionType[1])));
+    string[] connectionType = { "MacConnection", "BusinessConnection" };
+    builder.Services.AddDbContext<TradingSystemDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString(connectionType[0])));
     builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
     builder.Services.AddScoped<IInitRepository, InitRepository>();
