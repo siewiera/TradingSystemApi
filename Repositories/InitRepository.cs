@@ -24,8 +24,7 @@ namespace TradingSystemApi.Repositories
                 .Include(s => s.Store)
                 .Include(s => s.Adress)
                 .Include(s => s.Cashiers)
-                .FirstOrDefaultAsync(s => _dbContext
-                    .Cashiers
+                .FirstOrDefaultAsync(s => s.Cashiers
                     .Any(c => c.Username == "Admin"));
 
             return initData;

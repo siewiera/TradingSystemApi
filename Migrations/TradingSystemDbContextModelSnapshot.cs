@@ -78,10 +78,10 @@ namespace TradingSystemApi.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2(0)");
 
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
                     b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StoreId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdateDate")
@@ -90,6 +90,8 @@ namespace TradingSystemApi.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("StoreId");
 
                     b.ToTable("Barcodes");
                 });
@@ -306,7 +308,12 @@ namespace TradingSystemApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("StoreId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("StoreId");
 
                     b.ToTable("ProductCategories");
                 });
@@ -557,7 +564,15 @@ namespace TradingSystemApi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TradingSystemApi.Entities.Store", "Store")
+                        .WithMany("Barcodes")
+                        .HasForeignKey("StoreId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Product");
+
+                    b.Navigation("Store");
                 });
 
             modelBuilder.Entity("TradingSystemApi.Entities.Cashier", b =>
@@ -659,6 +674,17 @@ namespace TradingSystemApi.Migrations
                         .IsRequired();
 
                     b.Navigation("ProductCategory");
+
+                    b.Navigation("Store");
+                });
+
+            modelBuilder.Entity("TradingSystemApi.Entities.ProductCategory", b =>
+                {
+                    b.HasOne("TradingSystemApi.Entities.Store", "Store")
+                        .WithMany("ProductCategories")
+                        .HasForeignKey("StoreId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Store");
                 });
@@ -836,9 +862,13 @@ namespace TradingSystemApi.Migrations
                 {
                     b.Navigation("Adresses");
 
+                    b.Navigation("Barcodes");
+
                     b.Navigation("Customers");
 
                     b.Navigation("InventoryMovements");
+
+                    b.Navigation("ProductCategories");
 
                     b.Navigation("Products");
 

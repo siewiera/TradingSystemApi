@@ -180,3 +180,4 @@ C:\Users\BPX S Siewiera\source\repos\TradingSystemApi\bin\Debug\net8.0\TradingSy
 C:\Users\BPX S Siewiera\source\repos\TradingSystemApi\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\Users\BPX S Siewiera\source\repos\TradingSystemApi\obj\Debug\net8.0\staticwebassets\msbuild.TradingSystemApi.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
 C:\Users\BPX S Siewiera\source\repos\TradingSystemApi\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\BPX S Siewiera\source\repos\TradingSystemApi\obj\Debug\net8.0\TradingSystemApi.sourcelink.json

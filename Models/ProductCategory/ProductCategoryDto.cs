@@ -1,16 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TradingSystemApi.Entities;
 
-namespace TradingSystemApi.Entities
+namespace TradingSystemApi.Models.ProductCategory
 {
-    public class ProductCategory
+    public class ProductCategoryDto
     {
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
 
         public int StoreId { get; set; }
-        public virtual Store Store { get; set; }
-
-        public virtual ICollection<Product> Products { get; set; }
     }
 }
