@@ -11,7 +11,6 @@ using TradingSystemApi.Interface.RepositoriesInterface;
 using TradingSystemApi.Interface.ServicesInterface;
 using TradingSystemApi.Repositories;
 using TradingSystemApi.Services;
-using TradingSystemApi.Services.StartupTask;
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
@@ -24,14 +23,16 @@ try
     builder.Services.AddDbContext<TradingSystemDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString(connectionType[0])));
     builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
+    builder.Services.AddHostedService<InitServiceProvider>();
+
     builder.Services.AddScoped<IInitRepository, InitRepository>();
     builder.Services.AddScoped<IStoreRepository, StoreRepository>();
     builder.Services.AddScoped<IAdressRepository, AdressRepository>();
     builder.Services.AddScoped<ISellerRepository, SellerRepository>();
     builder.Services.AddScoped<ICashierRepository, CashierRepository>();
     builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+    builder.Services.AddScoped<IBarcodeRepository, BarcodeRepository>();
 
-    builder.Services.AddSingleton<IStartupFilter, StartupTask>();
 
     builder.Services.AddScoped<IInitService, InitService>();
     builder.Services.AddScoped<IStoreService, StoreService>();
@@ -39,11 +40,9 @@ try
     builder.Services.AddScoped<ISellerService, SellerService>();
     builder.Services.AddScoped<ICashierService, CashierService>();
     builder.Services.AddScoped<ICustomerService, CustomerService>();
+    builder.Services.AddScoped<IBarcodeService, BarcodeService>();
 
 
-    //builder.Services.AddScoped<IInitService, InitService>();
-
-    //builder.Services.AddScoped<InitService>();
     builder.Services.AddScoped<ErrorHandlingMiddleware>();
     builder.Services.AddScoped<BCryptHash>();
     builder.Services.AddSwaggerGen();
@@ -56,11 +55,6 @@ try
 
     app.UseMiddleware<ErrorHandlingMiddleware>();
 
-    //using (var scope = app.Services.CreateScope())
-    //{
-    //    var dataInitializer = scope.ServiceProvider.GetRequiredService<InitService>();
-    //    await dataInitializer.CheckAdminAccountExists();
-    //}
 
     app.UseHttpsRedirection();
 

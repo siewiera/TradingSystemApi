@@ -250,6 +250,162 @@
     ]
   },
   {
+    "ContainingType": "TradingSystemApi.Controllers.BarcodeController",
+    "Method": "AddNewBarcode",
+    "RelativePath": "api/tradingSystem/store={storeId}/barcode",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TradingSystemApi.Models.BarcodeDto.AddNewBarcodeDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.BarcodeController",
+    "Method": "GetAllBarcodesData",
+    "RelativePath": "api/tradingSystem/store={storeId}/barcode",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TradingSystemApi.Models.BarcodeDto.BarcodeDto, TradingSystemApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.BarcodeController",
+    "Method": "GetBarcodeDataByCode",
+    "RelativePath": "api/tradingSystem/store={storeId}/barcode/code={code}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TradingSystemApi.Models.BarcodeDto.BarcodeDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.BarcodeController",
+    "Method": "UpdateBarcodeDataById",
+    "RelativePath": "api/tradingSystem/store={storeId}/barcode={barcodeId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TradingSystemApi.Models.BarcodeDto.UpdateBarcodeDataDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "barcodeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.BarcodeController",
+    "Method": "DeleteBarcodeById",
+    "RelativePath": "api/tradingSystem/store={storeId}/barcode={barcodeId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "barcodeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.BarcodeController",
+    "Method": "GetBarcodeDataById",
+    "RelativePath": "api/tradingSystem/store={storeId}/barcode={barcodeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "barcodeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TradingSystemApi.Models.BarcodeDto.BarcodeDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "TradingSystemApi.Controllers.CustomerController",
     "Method": "AddCustomerDataWithNewAdress",
     "RelativePath": "api/tradingSystem/store={storeId}/customer",

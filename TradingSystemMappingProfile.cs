@@ -2,9 +2,11 @@
 using TradingSystemApi.Entities;
 using TradingSystemApi.Models;
 using TradingSystemApi.Models.AdressDto;
+using TradingSystemApi.Models.BarcodeDto;
 using TradingSystemApi.Models.CashierDto;
 using TradingSystemApi.Models.Customer;
 using TradingSystemApi.Models.InitData;
+using TradingSystemApi.Models.ProductCategory;
 using TradingSystemApi.Models.SellerDto;
 using TradingSystemApi.Models.StoreDto;
 
@@ -111,6 +113,18 @@ namespace TradingSystemApi
                     }
                 ));
             CreateMap<UpdateCustomerDetailsDto, Customer>();
+
+
+            //Barcode
+            CreateMap<AddNewBarcodeDto, Barcode>();
+            CreateMap<UpdateBarcodeDataDto, Barcode>();
+            CreateMap<Barcode, BarcodeDto>();
+
+
+            //ProductCategory
+            CreateMap<AddNewProductCategoryDto, ProductCategory>();
+            CreateMap<UpdateProductCategoryDataDto, ProductCategory>();
+            CreateMap<ProductCategory, ProductCategoryDto>();
         }
     }
 }
