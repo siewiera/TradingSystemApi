@@ -38,13 +38,20 @@ namespace TradingSystemApi.Services
         {
             await _storeRepositor.CheckStoreById(storeId);
             var adress = await _adressRepository.GetAdressDataById(storeId, adressId);
+
+            if(!(adress.Street == dto.Street &&
+                adress.HouseNo == dto.HouseNo &&
+                adress.City == dto.City &&
+                adress.ZipCode == dto.ZipCode &&
+                adress.Country == dto.Country))
+                await _adressRepository.CheckAdressDataExists(adress, storeId);
+
+
             adress.Street = dto.Street;
             adress.HouseNo = dto.HouseNo;
             adress.City = dto.City;
             adress.ZipCode = dto.ZipCode;
             adress.Country = dto.Country;
-
-            await _adressRepository.CheckAdressDataExists(adress, storeId);
             await _adressRepository.UpdateAdressData(adress);
         }
 
@@ -55,7 +62,7 @@ namespace TradingSystemApi.Services
             await _adressRepository.DeleteAdress(adress);
         }
 
-        public async Task<IEnumerable<AdressDto>> GetAllAddressesData(int storeId)
+        public async Task<IEnumerable<AdressDto>> GetAllAdressesData(int storeId)
         {
             await _storeRepositor.CheckStoreById(storeId);
             var adresses = await _adressRepository.GetAllAdressesData(storeId);

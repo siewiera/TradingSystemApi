@@ -38,11 +38,13 @@ namespace TradingSystemApi.Services
         {
             await _storeRepository.CheckStoreById(storeId);
             var barcode = await _barcodeRepository.GetBarcodeDataById(storeId, barcodeId);
+            
+            if(barcode.Code != dto.Code)
+                await _barcodeRepository.CheckBarcodeExists(barcode, storeId);
+
             barcode.Code = dto.Code;
             barcode.Active = dto.Active;
             barcode.UpdateDate = DateTime.Now;
-
-            await _barcodeRepository.CheckBarcodeExists(barcode, storeId);
             await _barcodeRepository.UpdateBarcodeData(barcode);
         }
 

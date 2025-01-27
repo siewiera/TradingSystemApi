@@ -52,7 +52,7 @@ namespace TradingSystemApi.Services
             await _sellerRepository.CheckSellerById(storeId, sellerId);
 
             var cashier = await _cashierRepository.GetCashierDataById(storeId, sellerId, cashierId);
-            if (cashier.Id != cashierId)
+            if (cashier.Username != dto.Username)
                 await _cashierRepository.GetCashierDataByUsername(storeId, sellerId, dto.Username);
 
             cashier.Username = dto.Username;

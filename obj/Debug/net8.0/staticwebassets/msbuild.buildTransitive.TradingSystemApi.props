@@ -1,3 +1,3 @@
 ﻿<Project>
-  <Import Project="../buildMultiTargeting/TradingSystemApi.props" />
+  <Import Project="..\buildMultiTargeting\TradingSystemApi.props" />
 </Project>

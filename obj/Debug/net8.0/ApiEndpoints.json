@@ -147,7 +147,7 @@
   },
   {
     "ContainingType": "TradingSystemApi.Controllers.AdressController",
-    "Method": "GetAllAddressesData",
+    "Method": "GetAllAdressesData",
     "RelativePath": "api/tradingSystem/store={storeId}/adress",
     "HttpMethod": "GET",
     "IsController": true,
@@ -578,6 +578,162 @@
     "ReturnTypes": [
       {
         "Type": "TradingSystemApi.Models.Customer.CustomerDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.ProductCategoryController",
+    "Method": "AddNewProductCategory",
+    "RelativePath": "api/tradingSystem/store={storeId}/productCategory",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TradingSystemApi.Models.ProductCategory.AddNewProductCategoryDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.ProductCategoryController",
+    "Method": "GetAllProductCategoriesData",
+    "RelativePath": "api/tradingSystem/store={storeId}/productCategory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TradingSystemApi.Models.ProductCategory.ProductCategoryDto, TradingSystemApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.ProductCategoryController",
+    "Method": "UpdateProductCategoryDataById",
+    "RelativePath": "api/tradingSystem/store={storeId}/productCategory={productCategoryId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TradingSystemApi.Models.ProductCategory.UpdateProductCategoryDataDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "productCategoryId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.ProductCategoryController",
+    "Method": "DeleteProductCategoryById",
+    "RelativePath": "api/tradingSystem/store={storeId}/productCategory={productCategoryId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "productCategoryId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.ProductCategoryController",
+    "Method": "GetProductCategoryDataById",
+    "RelativePath": "api/tradingSystem/store={storeId}/productCategory={productCategoryId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "productCategoryId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TradingSystemApi.Models.ProductCategory.ProductCategoryDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TradingSystemApi.Controllers.ProductCategoryController",
+    "Method": "GetProductCategoryDataByName",
+    "RelativePath": "api/tradingSystem/store={storeId}/productCategoryName={productCategoryName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "productCategoryName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TradingSystemApi.Models.ProductCategory.ProductCategoryDto",
         "MediaTypes": [
           "text/plain",
           "application/json",

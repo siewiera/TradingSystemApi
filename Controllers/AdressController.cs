@@ -37,9 +37,9 @@ namespace TradingSystemApi.Controllers
         }
 
         [HttpGet("adress")]
-        public async Task<ActionResult<IEnumerable<AdressDto>>> GetAllAddressesData([FromRoute] int storeId) 
+        public async Task<ActionResult<IEnumerable<AdressDto>>> GetAllAdressesData([FromRoute] int storeId) 
         {
-            var adresses = await _adressService.GetAllAddressesData(storeId);
+            var adresses = await _adressService.GetAllAdressesData(storeId);
             return Ok(adresses);
         }
 

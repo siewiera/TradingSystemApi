@@ -7,7 +7,7 @@ namespace TradingSystemApi.Interface.ServicesInterface
         Task<int> AddingNewAdress(AddingNewAdressDto dto, int storeId);
         Task DeleteAdressById(int storeId, int adressId);
         Task<AdressDto> GetAdressDataById(int storeId, int adressId);
-        Task<IEnumerable<AdressDto>> GetAllAddressesData(int storeId);
+        Task<IEnumerable<AdressDto>> GetAllAdressesData(int storeId);
         Task UpdateAdressDataById(UpdateAdressDto dto, int storeId, int adressId);
     }
 }

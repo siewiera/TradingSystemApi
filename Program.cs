@@ -7,6 +7,7 @@ using NLog;
 using NLog.Web;
 using TradingSystemApi;
 using TradingSystemApi.Context;
+using TradingSystemApi.Entities;
 using TradingSystemApi.Interface.RepositoriesInterface;
 using TradingSystemApi.Interface.ServicesInterface;
 using TradingSystemApi.Repositories;
@@ -20,7 +21,7 @@ try
 
     builder.Services.AddControllers();
     string[] connectionType = { "MacConnection", "BusinessConnection" };
-    builder.Services.AddDbContext<TradingSystemDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString(connectionType[0])));
+    builder.Services.AddDbContext<TradingSystemDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString(connectionType[1])));
     builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
     builder.Services.AddHostedService<InitServiceProvider>();
@@ -32,6 +33,8 @@ try
     builder.Services.AddScoped<ICashierRepository, CashierRepository>();
     builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
     builder.Services.AddScoped<IBarcodeRepository, BarcodeRepository>();
+    builder.Services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
+
 
 
     builder.Services.AddScoped<IInitService, InitService>();
@@ -41,6 +44,7 @@ try
     builder.Services.AddScoped<ICashierService, CashierService>();
     builder.Services.AddScoped<ICustomerService, CustomerService>();
     builder.Services.AddScoped<IBarcodeService, BarcodeService>();
+    builder.Services.AddScoped<IProductCategoryService, ProductCategoryService>();
 
 
     builder.Services.AddScoped<ErrorHandlingMiddleware>();
