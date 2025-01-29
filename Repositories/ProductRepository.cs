@@ -4,10 +4,11 @@ using TradingSystemApi.Context;
 using TradingSystemApi.Entities;
 using TradingSystemApi.Enum;
 using TradingSystemApi.Exceptions;
+using TradingSystemApi.Interface.RepositoriesInterface;
 
 namespace TradingSystemApi.Repositories
 {
-    public class ProductRepository
+    public class ProductRepository : IProductRepository
     {
         private readonly TradingSystemDbContext _dbContext;
 
@@ -16,7 +17,7 @@ namespace TradingSystemApi.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task CheckProductDataExists(Product product_, int storeId) 
+        public async Task CheckProductDataExists(Product product_, int storeId)
         {
             var product = await _dbContext
                 .Products
@@ -44,7 +45,7 @@ namespace TradingSystemApi.Repositories
         public async Task AddNewProduct(Product product)
         {
             await _dbContext.Products.AddAsync(product);
-            await _dbContext.SaveChangesAsync();    
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task UpdateProductData(Product product)
@@ -53,13 +54,13 @@ namespace TradingSystemApi.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteProduct(Product product) 
+        public async Task DeleteProduct(Product product)
         {
             _dbContext.Products.Remove(product);
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<Product> GetProductDataById(int storeId, int productId) 
+        public async Task<Product> GetProductDataById(int storeId, int productId)
         {
             var product = await _dbContext
                 .Products
@@ -114,22 +115,6 @@ namespace TradingSystemApi.Repositories
                 .Include(p => p.JM)
                 .Include(p => p.Barcodes)
                 .Where(p => p.StoreId == storeId && p.Name == productName)
-                .ToListAsync();
-
-            if (!products.Any())
-                throw new NotFoundException("Product not found");
-
-            return products;
-        }
-
-        public async Task<IEnumerable<Product>> GetProductsDataByJM(int storeId, JM jm)
-        {
-            var products = await _dbContext
-                .Products
-                .Include(p => p.ProductCategory)
-                .Include(p => p.JM)
-                .Include(p => p.Barcodes)
-                .Where(p => p.StoreId == storeId && p.JM == jm)
                 .ToListAsync();
 
             if (!products.Any())
