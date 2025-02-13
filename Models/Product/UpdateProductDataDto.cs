@@ -26,6 +26,6 @@ namespace TradingSystemApi.Models.Product
 
         public int ProductCategoryId { get; set; }
 
-        public ICollection<Barcode> Barcodes { get; set; }
+        //public ICollection<Barcode> Barcodes { get; set; }
     }
 }

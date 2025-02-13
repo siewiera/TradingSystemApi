@@ -6,6 +6,7 @@ using TradingSystemApi.Models.BarcodeDto;
 using TradingSystemApi.Models.CashierDto;
 using TradingSystemApi.Models.Customer;
 using TradingSystemApi.Models.InitData;
+using TradingSystemApi.Models.Product;
 using TradingSystemApi.Models.ProductCategory;
 using TradingSystemApi.Models.SellerDto;
 using TradingSystemApi.Models.StoreDto;
@@ -125,6 +126,25 @@ namespace TradingSystemApi
             CreateMap<AddNewProductCategoryDto, ProductCategory>();
             CreateMap<UpdateProductCategoryDataDto, ProductCategory>();
             CreateMap<ProductCategory, ProductCategoryDto>();
+
+            //Product
+            CreateMap<AddNewProductDto, Product>()
+                .ForMember(p => p.Barcodes, b => b.MapFrom(dto => new List<Barcode>
+                {
+                    new Barcode()
+                    {
+                        Code = dto.Code,
+                        Active = dto.Active,
+                        CreationDate = dto.BarcodeCreationDate,
+                        UpdateDate = dto.BarcodeUpdateDate
+                    }
+                }));
+            CreateMap<UpdateProductDataDto, Product>();
+            CreateMap<Product, ProductDto>()
+                .ForMember(pd => pd.ProductCategoryName, p => p.MapFrom(p => p.ProductCategory.Name))
+                .ForMember(pd => pd.BarcodeDtos, p => p.MapFrom(p => p.Barcodes));
+
+
         }
     }
 }

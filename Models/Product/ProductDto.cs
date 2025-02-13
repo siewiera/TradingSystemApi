@@ -27,22 +27,19 @@ namespace TradingSystemApi.Models.Product
         public DateTime CreationDate { get; set; }
         public DateTime UpdateDate { get; set; }
 
-
-        public int StoreId { get; set; }
-
+        public int StoreId { get; set; }  
 
         //ProductCategory
         public int ProductCategoryId { get; set; }
         [Required]
         public string ProductCategoryName { get; set; }
 
-
         //Barcode
-        //public ICollection<Barcode> Barcodes { get; set; }
-        public string Code { get; set; }
-        public bool Active { get; set; }
-        public DateTime BarcodeCreationDate { get; set; }
-        public DateTime BarcodeUpdateDate { get; set; }
+        public ICollection<BarcodeDto.BarcodeDto> BarcodeDtos { get; set; }
+        //public string Code { get; set; }
+        //public bool Active { get; set; }
+        //public DateTime BarcodeCreationDate { get; set; }
+        //public DateTime BarcodeUpdateDate { get; set; }
 
     }
 }

@@ -43,7 +43,8 @@ namespace TradingSystemApi.Services
                 adress.HouseNo == dto.HouseNo &&
                 adress.City == dto.City &&
                 adress.ZipCode == dto.ZipCode &&
-                adress.Country == dto.Country))
+                adress.Country == dto.Country &&
+                adress.StoreId == storeId))
                 await _adressRepository.CheckAdressDataExists(adress, storeId);
 
 

@@ -27,17 +27,31 @@ namespace TradingSystemApi.Repositories
                 .FirstOrDefaultAsync
                 (
                     p =>
-                    p.Name == product_.Name &&
-                    p.JM == product_.JM &&
+                    //p.Name == product_.Name &&
+                    //p.JM == product_.JM &&
                     p.ProductCode == product_.ProductCode &&
-                    p.CostNetPrice == product_.CostNetPrice &&
-                    p.Vat == product_.Vat &&
-                    p.SellingPrice == product_.SellingPrice &&
+                    //p.CostNetPrice == product_.CostNetPrice &&
+                    //p.Vat == product_.Vat &&
+                    //p.SellingPrice == product_.SellingPrice &&
                     p.StoreId == storeId
                 );
 
             if (product != null)
                 throw new ConflictException("Product exists");
+        }
+
+        public async Task<int> GetMaxProductCode(int storeId) 
+        {
+            int maxProductCode = 0;
+            var products = await _dbContext
+                .Products
+                .Select(p => p.ProductCode)
+                .ToListAsync();
+
+            if(products.Any())
+                maxProductCode = products.Max();
+
+            return maxProductCode;
         }
 
         /**/
@@ -75,7 +89,7 @@ namespace TradingSystemApi.Repositories
             return product;
         }
 
-        public async Task<Product> GetProductsDataByProductCode(int storeId, int productCode)
+        public async Task<Product> GetProductDataByProductCode(int storeId, int productCode)
         {
             var product = await _dbContext
                 .Products
@@ -90,7 +104,7 @@ namespace TradingSystemApi.Repositories
             return product;
         }
 
-        public async Task<Product> GetProductsDataByBarcode(int storeId, string barcode)
+        public async Task<Product> GetProductDataByBarcode(int storeId, string barcode)
         {
             var product = await _dbContext
                 .Products
