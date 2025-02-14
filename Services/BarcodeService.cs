@@ -4,6 +4,7 @@ using TradingSystemApi.Interface.RepositoriesInterface;
 using TradingSystemApi.Interface.ServicesInterface;
 using TradingSystemApi.Models.BarcodeDto;
 using TradingSystemApi.Models.InvoiceSale;
+using TradingSystemApi.Models.StoreDto;
 
 namespace TradingSystemApi.Services
 {
@@ -11,24 +12,30 @@ namespace TradingSystemApi.Services
     {
         private readonly IMapper _mapper;
         private readonly IStoreRepository _storeRepository;
+        private readonly IProductRepository _productRepository;
         private readonly IBarcodeRepository _barcodeRepository;
 
-        public BarcodeService(IMapper mapper, IStoreRepository storeRepository, IBarcodeRepository barcodeRepository)
+        public BarcodeService(IMapper mapper, IStoreRepository storeRepository, IProductRepository productRepository, IBarcodeRepository barcodeRepository)
         {
             _mapper = mapper;
             _storeRepository = storeRepository;
+            _productRepository = productRepository;
             _barcodeRepository = barcodeRepository;
         }
 
-        public async Task<int> AddNewBarcode(AddNewBarcodeDto dto, int storeId)
+        public async Task<int> AddNewBarcode(AddNewBarcodeDto dto, int storeId, int productId)
         {
             await _storeRepository.CheckStoreById(storeId);
+            await _productRepository.GetProductDataById(storeId, productId);
+
             var barcode = _mapper.Map<Barcode>(dto);
-            barcode.Active = true;
+            //barcode.Active = true;
             barcode.CreationDate = DateTime.Now;
             barcode.UpdateDate = DateTime.Now;
             barcode.StoreId = storeId;
-            await _barcodeRepository.CheckBarcodeExists(barcode, storeId);
+            barcode.ProductId = productId;
+
+            await _barcodeRepository.CheckBarcodeExists(storeId, dto.Code);
             await _barcodeRepository.AddNewBarcode(barcode);
 
             return barcode.Id;
@@ -40,7 +47,7 @@ namespace TradingSystemApi.Services
             var barcode = await _barcodeRepository.GetBarcodeDataById(storeId, barcodeId);
             
             if(barcode.Code != dto.Code)
-                await _barcodeRepository.CheckBarcodeExists(barcode, storeId);
+                await _barcodeRepository.CheckBarcodeExists(storeId, dto.Code);
 
             barcode.Code = dto.Code;
             barcode.Active = dto.Active;

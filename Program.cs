@@ -31,6 +31,7 @@ try
     builder.Services.AddScoped<IAdressRepository, AdressRepository>();
     builder.Services.AddScoped<ISellerRepository, SellerRepository>();
     builder.Services.AddScoped<ICashierRepository, CashierRepository>();
+    builder.Services.AddScoped<IProductRepository, ProductRepository>();
     builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
     builder.Services.AddScoped<IBarcodeRepository, BarcodeRepository>();
     builder.Services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
@@ -42,6 +43,7 @@ try
     builder.Services.AddScoped<IAdressService, AdressService>();
     builder.Services.AddScoped<ISellerService, SellerService>();
     builder.Services.AddScoped<ICashierService, CashierService>();
+    builder.Services.AddScoped<IProductService, ProductService>();
     builder.Services.AddScoped<ICustomerService, CustomerService>();
     builder.Services.AddScoped<IBarcodeService, BarcodeService>();
     builder.Services.AddScoped<IProductCategoryService, ProductCategoryService>();

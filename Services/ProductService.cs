@@ -39,7 +39,7 @@ namespace TradingSystemApi.Services
             else
                 sellingNetPrice = costNetPrice + productMargin;
 
-            return sellingNetPrice;
+            return decimal.Round(sellingNetPrice, 2);
         }
 
         public async Task<int> GenerationPorductCode(int storeId) 
@@ -60,13 +60,14 @@ namespace TradingSystemApi.Services
             await _storeRepository.CheckStoreById(storeId);
             await _productCategoryRepository.GetProductCategoryDataById(storeId, dto.ProductCategoryId);
 
-            dto.BarcodeCreationDate = DateTime.Now;
-            dto.BarcodeUpdateDate = DateTime.Now;
             var product = _mapper.Map<Product>(dto);
             product.StoreId = storeId;
             product.SellingPrice = CalculateMargin(product.CostNetPrice, product.ProductMargin, product.PercentageMargin);
             product.ProductCode = await GenerationPorductCode(storeId);
-            await _productRepository.CheckProductDataExists(product, storeId);
+            product.CreationDate = DateTime.Now;
+            product.UpdateDate = DateTime.Now;
+
+            await _productRepository.CheckProductDataExists(storeId, dto.Name);
             await _productRepository.AddNewProduct(product);
 
             return product.Id;
@@ -76,8 +77,10 @@ namespace TradingSystemApi.Services
         {
             await _storeRepository.CheckStoreById(storeId);
             var product = await _productRepository.GetProductDataById(storeId, productId);
-            await _productRepository.CheckProductDataExists(product, storeId);
             await _productCategoryRepository.GetProductCategoryDataById(storeId, dto.ProductCategoryId);
+
+            if (product.Name != dto.Name)
+                await _productRepository.CheckProductDataExists(storeId, dto.Name);
 
             product.Name = dto.Name;
             product.JM = dto.JM;
@@ -88,6 +91,7 @@ namespace TradingSystemApi.Services
             product.SellingPrice = CalculateMargin(dto.CostNetPrice, dto.ProductMargin, dto.PercentageMargin);
             product.Quantity = dto.Quantity;
             product.ProductCategoryId = dto.ProductCategoryId;
+            product.UpdateDate = DateTime.Now;
 
             await _productRepository.UpdateProductData(product);
         }

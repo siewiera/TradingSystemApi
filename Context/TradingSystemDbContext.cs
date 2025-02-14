@@ -119,6 +119,11 @@ namespace TradingSystemApi.Context
                 .WithOne(im => im.Store)
                 .HasForeignKey(im => im.StoreId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+                s.HasMany(st => st.Sessions)
+                .WithOne(s => s.Store)
+                .HasForeignKey(im => im.StoreId)
+                .OnDelete(DeleteBehavior.Restrict);
             });
 
             modelBuilder.Entity<Seller>()
@@ -189,14 +194,20 @@ namespace TradingSystemApi.Context
 
             modelBuilder.Entity<Product>()
                 .HasOne(p => p.ProductCategory)
-                .WithMany(p => p.Products)
+                .WithMany(pc => pc.Products)
                 .HasForeignKey(p => p.ProductCategoryId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Product>()
                .HasMany(p => p.Barcodes)
                .WithOne(b => b.Product)
-               .HasForeignKey(p => p.ProductId)
+               .HasForeignKey(b => b.ProductId)
+               .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Cashier>()
+               .HasOne(c => c.Session)
+               .WithOne(s => s.Cashier)
+               .HasForeignKey<Session>(s => s.CashierId)
                .OnDelete(DeleteBehavior.Cascade);
 
             //enum conversion

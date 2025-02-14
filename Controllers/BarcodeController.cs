@@ -16,10 +16,10 @@ namespace TradingSystemApi.Controllers
             _barcodeService = barcodeService;
         }
 
-        [HttpPost("barcode")]
-        public async Task<ActionResult> AddNewBarcode([FromBody] AddNewBarcodeDto dto, [FromRoute] int storeId) 
+        [HttpPost("barcode/product={productId}")]
+        public async Task<ActionResult> AddNewBarcode([FromBody] AddNewBarcodeDto dto, [FromRoute] int storeId, [FromRoute] int productId) 
         {
-            var barcodeId = await _barcodeService.AddNewBarcode(dto, storeId);
+            var barcodeId = await _barcodeService.AddNewBarcode(dto, storeId, productId);
             return Created($"api/tradingSystem/store={storeId}/barcode={barcodeId}", null);
         }
 

@@ -16,14 +16,14 @@ namespace TradingSystemApi.Repositories
         }
 
 
-        public async Task CheckBarcodeExists(Barcode barcode_, int storeId)
+        public async Task CheckBarcodeExists(int storeId, string code)
         {
             var barcode = await _dbContext
                 .Barcodes
                 .FirstOrDefaultAsync
                 (
                     b =>
-                    b.Code == barcode_.Code &&
+                    b.Code == code &&
                     b.StoreId == storeId
                 );
 
@@ -55,7 +55,12 @@ namespace TradingSystemApi.Repositories
         {
             var barcode = await _dbContext
                 .Barcodes
-                .FirstOrDefaultAsync(b => b.StoreId == storeId && b.Id == barcodeId);
+                .FirstOrDefaultAsync
+                (
+                    b => 
+                    b.StoreId == storeId && 
+                    b.Id == barcodeId
+                );
 
             if (barcode == null)
                 throw new NotFoundException("Barcode not found");
@@ -67,7 +72,12 @@ namespace TradingSystemApi.Repositories
         {
             var barcode = await _dbContext
                 .Barcodes
-                .FirstOrDefaultAsync(b => b.StoreId == storeId && b.Code == code);
+                .FirstOrDefaultAsync
+                (
+                    b => 
+                    b.StoreId == storeId && 
+                    b.Code == code
+                );
 
             if (barcode == null)
                 throw new NotFoundException("Barcode not found");

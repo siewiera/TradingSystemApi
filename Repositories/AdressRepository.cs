@@ -11,7 +11,7 @@ namespace TradingSystemApi.Repositories
     {
         private readonly TradingSystemDbContext _dbContext;
 
-        public AdressRepository(TradingSystemDbContext dbContext, IStoreRepository storeRepository)
+        public AdressRepository(TradingSystemDbContext dbContext)
         {
             _dbContext = dbContext;
         }

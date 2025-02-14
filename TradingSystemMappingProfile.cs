@@ -128,17 +128,7 @@ namespace TradingSystemApi
             CreateMap<ProductCategory, ProductCategoryDto>();
 
             //Product
-            CreateMap<AddNewProductDto, Product>()
-                .ForMember(p => p.Barcodes, b => b.MapFrom(dto => new List<Barcode>
-                {
-                    new Barcode()
-                    {
-                        Code = dto.Code,
-                        Active = dto.Active,
-                        CreationDate = dto.BarcodeCreationDate,
-                        UpdateDate = dto.BarcodeUpdateDate
-                    }
-                }));
+            CreateMap<AddNewProductDto, Product>();
             CreateMap<UpdateProductDataDto, Product>();
             CreateMap<Product, ProductDto>()
                 .ForMember(pd => pd.ProductCategoryName, p => p.MapFrom(p => p.ProductCategory.Name))

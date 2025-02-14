@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 using TradingSystemApi.Context;
 using TradingSystemApi.Entities;
 using TradingSystemApi.Enum;
@@ -17,22 +18,16 @@ namespace TradingSystemApi.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task CheckProductDataExists(Product product_, int storeId)
+        public async Task CheckProductDataExists(int storeId, string name)
         {
             var product = await _dbContext
                 .Products
                 .Include(p => p.ProductCategory)
-                .Include(p => p.JM)
                 .Include(p => p.Barcodes)
                 .FirstOrDefaultAsync
                 (
                     p =>
-                    //p.Name == product_.Name &&
-                    //p.JM == product_.JM &&
-                    p.ProductCode == product_.ProductCode &&
-                    //p.CostNetPrice == product_.CostNetPrice &&
-                    //p.Vat == product_.Vat &&
-                    //p.SellingPrice == product_.SellingPrice &&
+                    p.Name == name &&
                     p.StoreId == storeId
                 );
 
@@ -58,7 +53,7 @@ namespace TradingSystemApi.Repositories
 
         public async Task AddNewProduct(Product product)
         {
-            await _dbContext.Products.AddAsync(product);
+            await _dbContext.Products.AddRangeAsync(product);
             await _dbContext.SaveChangesAsync();
         }
 
@@ -79,7 +74,6 @@ namespace TradingSystemApi.Repositories
             var product = await _dbContext
                 .Products
                 .Include(p => p.ProductCategory)
-                .Include(p => p.JM)
                 .Include(p => p.Barcodes)
                 .FirstOrDefaultAsync(p => p.StoreId == storeId && p.Id == productId);
 
@@ -94,7 +88,6 @@ namespace TradingSystemApi.Repositories
             var product = await _dbContext
                 .Products
                 .Include(p => p.ProductCategory)
-                .Include(p => p.JM)
                 .Include(p => p.Barcodes)
                 .FirstOrDefaultAsync(p => p.StoreId == storeId && p.ProductCode == productCode);
 
@@ -109,7 +102,6 @@ namespace TradingSystemApi.Repositories
             var product = await _dbContext
                 .Products
                 .Include(p => p.ProductCategory)
-                .Include(p => p.JM)
                 .Include(p => p.Barcodes)
                 .FirstOrDefaultAsync(p => p.StoreId == storeId && p.Barcodes.Any(b => b.Code == barcode));
 
@@ -126,7 +118,6 @@ namespace TradingSystemApi.Repositories
             var products = await _dbContext
                 .Products
                 .Include(p => p.ProductCategory)
-                .Include(p => p.JM)
                 .Include(p => p.Barcodes)
                 .Where(p => p.StoreId == storeId && p.Name == productName)
                 .ToListAsync();
@@ -142,7 +133,6 @@ namespace TradingSystemApi.Repositories
             var products = await _dbContext
                 .Products
                 .Include(p => p.ProductCategory)
-                .Include(p => p.JM)
                 .Include(p => p.Barcodes)
                 .Where(p => p.StoreId == storeId && p.ProductCategory.Id == productCategoryId)
                 .ToListAsync();
@@ -158,8 +148,7 @@ namespace TradingSystemApi.Repositories
             var products = await _dbContext
                 .Products
                 .Include(p => p.ProductCategory)
-                .Include(p => p.JM)
-                .Include(p => p.Barcodes)
+                .Include(p => p.Barcodes)     
                 .Where(p => p.StoreId == storeId)
                 .ToListAsync();
 

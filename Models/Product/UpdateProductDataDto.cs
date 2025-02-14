@@ -11,8 +11,6 @@ namespace TradingSystemApi.Models.Product
         public string Name { get; set; }
         [Required]
         public JM JM { get; set; }
-        //[Required]
-        //public int ProductCode { get; set; }
         [Required]
         public decimal CostNetPrice { get; set; }
         [Required]
@@ -25,7 +23,6 @@ namespace TradingSystemApi.Models.Product
         public int Quantity { get; set; }
 
         public int ProductCategoryId { get; set; }
-
-        //public ICollection<Barcode> Barcodes { get; set; }
+        public DateTime UpdateDate { get; set; }
     }
 }

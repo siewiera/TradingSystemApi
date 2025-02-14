@@ -5,7 +5,7 @@ namespace TradingSystemApi.Interface.ServicesInterface
 {
     public interface IBarcodeService
     {
-        Task<int> AddNewBarcode(AddNewBarcodeDto dto, int storeId);
+        Task<int> AddNewBarcode(AddNewBarcodeDto dto, int storeId, int productId);
         Task DeleteBarcodeById(int storeId, int barcodeId);
         Task<IEnumerable<BarcodeDto>> GetAllBarcodesData(int storeId);
         Task<BarcodeDto> GetBarcodeDataByCode(int storeId, string code);

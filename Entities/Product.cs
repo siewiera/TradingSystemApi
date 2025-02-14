@@ -34,6 +34,6 @@ namespace TradingSystemApi.Entities
 
         public virtual ICollection<InventoryMovementDetail> InventoryMovementDetails { get; set; }
         public virtual ICollection<SalesDocumentItem> SalesDocumentItems { get; set; }
-        public ICollection<Barcode> Barcodes { get; set; }
+        public virtual ICollection<Barcode> Barcodes { get; set; }
     }
 }

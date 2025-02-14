@@ -20,5 +20,7 @@ namespace TradingSystemApi.Entities
         public virtual ICollection<Customer> Customers { get; set; }
         public virtual ICollection<SalesDocument> SalesDocuments { get; set; }
         public virtual ICollection<InventoryMovement> InventoryMovements{ get; set; }
+        public virtual ICollection<Session> Sessions { get; set; }
+
     }
 }
