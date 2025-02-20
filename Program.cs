@@ -12,6 +12,7 @@ using TradingSystemApi.Interface.RepositoriesInterface;
 using TradingSystemApi.Interface.ServicesInterface;
 using TradingSystemApi.Repositories;
 using TradingSystemApi.Services;
+using TradingSystemApi.Services.ScheduleService;
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
@@ -20,11 +21,12 @@ try
     var builder = WebApplication.CreateBuilder(args);
 
     builder.Services.AddControllers();
+
     string[] connectionType = { "MacConnection", "BusinessConnection" };
     builder.Services.AddDbContext<TradingSystemDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString(connectionType[1])));
     builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
-    builder.Services.AddHostedService<InitServiceProvider>();
+    builder.Services.AddHostedService<InitServiceProvider>();  
 
     builder.Services.AddScoped<IInitRepository, InitRepository>();
     builder.Services.AddScoped<IStoreRepository, StoreRepository>();
@@ -35,7 +37,7 @@ try
     builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
     builder.Services.AddScoped<IBarcodeRepository, BarcodeRepository>();
     builder.Services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
-
+    builder.Services.AddScoped<ISessionRepository, SessionRepository>();
 
 
     builder.Services.AddScoped<IInitService, InitService>();
@@ -47,6 +49,10 @@ try
     builder.Services.AddScoped<ICustomerService, CustomerService>();
     builder.Services.AddScoped<IBarcodeService, BarcodeService>();
     builder.Services.AddScoped<IProductCategoryService, ProductCategoryService>();
+    builder.Services.AddScoped<ISessionService, SessionService>();
+
+    builder.Services.AddHostedService<ScheduleService>();
+    //builder.Services.AddHostedService(provider => provider.GetRequiredService<ScheduledTaskService>());
 
 
     builder.Services.AddScoped<ErrorHandlingMiddleware>();

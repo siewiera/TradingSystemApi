@@ -10,6 +10,8 @@ namespace TradingSystemApi.Entities
         [Required]
         public DateTime LoginTime { get; set; }
         public DateTime LastAction { get; set; }
+        public string Ip { get; set; }
+
 
         public int CashierId { get; set; }
         public virtual Cashier Cashier { get; set; }

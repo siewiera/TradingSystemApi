@@ -32,6 +32,14 @@ namespace TradingSystemApi.Controllers
             return Ok();
         }
 
+        //[HttpPut("cashier={cashierId}")]
+        //public async Task<ActionResult> ActiveCashierAccount([FromBody] ActiveCashierAccountDto dto, [FromRoute] int storeId, [FromRoute] int sellerId, [FromRoute] int cashierId)
+        //{
+        //    await _cashierService.ActiveCashierAccount(dto, storeId, sellerId, cashierId);
+
+        //    return Ok();
+        //}
+
         [HttpDelete("cashier={cashierId}")]
         public async Task<ActionResult> DeleteCashierById([FromRoute] int storeId, [FromRoute] int sellerId, [FromRoute] int cashierId) 
         {

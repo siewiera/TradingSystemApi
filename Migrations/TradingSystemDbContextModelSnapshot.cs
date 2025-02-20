@@ -448,19 +448,28 @@ namespace TradingSystemApi.Migrations
                     b.Property<int>("CashierId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Ip")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("LastAction")
                         .HasColumnType("datetime2(0)");
 
                     b.Property<DateTime>("LoginTime")
                         .HasColumnType("datetime2(0)");
 
-                    b.Property<Guid>("SessionId")
+                    b.Property<Guid>("SessionGuid")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("StoreId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CashierId")
                         .IsUnique();
+
+                    b.HasIndex("StoreId");
 
                     b.ToTable("Sessions");
                 });
@@ -664,7 +673,7 @@ namespace TradingSystemApi.Migrations
                     b.HasOne("TradingSystemApi.Entities.ProductCategory", "ProductCategory")
                         .WithMany("Products")
                         .HasForeignKey("ProductCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("TradingSystemApi.Entities.Store", "Store")
@@ -760,7 +769,15 @@ namespace TradingSystemApi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TradingSystemApi.Entities.Store", "Store")
+                        .WithMany("Sessions")
+                        .HasForeignKey("StoreId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Cashier");
+
+                    b.Navigation("Store");
                 });
 
             modelBuilder.Entity("TradingSystemApi.Entities.InvoiceSaleItem", b =>
@@ -875,6 +892,8 @@ namespace TradingSystemApi.Migrations
                     b.Navigation("SalesDocuments");
 
                     b.Navigation("Sellers");
+
+                    b.Navigation("Sessions");
                 });
 
             modelBuilder.Entity("TradingSystemApi.Entities.InvoiceSale", b =>

@@ -33,7 +33,12 @@ namespace TradingSystemApi.Models.CashierDto
 
         //public virtual ICollection<Cashier> Cashiers { get; set; }
 
-        //public virtual Session Session { get; set; }
+        //Session
+        public Guid SessionGuid { get; set; }
+        [Required]
+        public DateTime LoginTime { get; set; }
+        public DateTime LastAction { get; set; }
+        public string Ip { get; set; }
         //public virtual ICollection<SalesDocument> SalesDocuments { get; set; }
         //public virtual ICollection<InventoryMovement> InventoryMovements { get; set; }
     }

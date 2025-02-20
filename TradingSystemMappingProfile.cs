@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System.Xml;
 using TradingSystemApi.Entities;
 using TradingSystemApi.Models;
 using TradingSystemApi.Models.AdressDto;
@@ -9,6 +10,7 @@ using TradingSystemApi.Models.InitData;
 using TradingSystemApi.Models.Product;
 using TradingSystemApi.Models.ProductCategory;
 using TradingSystemApi.Models.SellerDto;
+using TradingSystemApi.Models.Session;
 using TradingSystemApi.Models.StoreDto;
 
 namespace TradingSystemApi
@@ -90,7 +92,11 @@ namespace TradingSystemApi
             CreateMap<AddingNewCashierDto, Cashier>();
             CreateMap<UpdateCashierDetailsDto, Cashier>();
             CreateMap<UpdateAdminAccountDto, Cashier>();
-            CreateMap<Cashier, CashierDto>();
+            CreateMap<Cashier, CashierDto>()
+                .ForMember(cd => cd.SessionGuid, c => c.MapFrom(c => c.Session.SessionGuid))
+                .ForMember(cd => cd.LoginTime, c => c.MapFrom(c => c.Session.LoginTime))
+                .ForMember(cd => cd.LastAction, c => c.MapFrom(c => c.Session.LastAction))
+                .ForMember(cd => cd.Ip, c => c.MapFrom(c => c.Session.Ip));
 
 
             //Customer
@@ -134,6 +140,9 @@ namespace TradingSystemApi
                 .ForMember(pd => pd.ProductCategoryName, p => p.MapFrom(p => p.ProductCategory.Name))
                 .ForMember(pd => pd.BarcodeDtos, p => p.MapFrom(p => p.Barcodes));
 
+
+            //Session
+            CreateMap<Session, SessionDto>();
 
         }
     }

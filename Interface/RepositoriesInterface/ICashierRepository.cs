@@ -12,5 +12,6 @@ namespace TradingSystemApi.Interface.RepositoriesInterface
         Task<Cashier> GetCashierDataById(int storeId, int sellerId, int cashierId);
         Task UpdateCashierData(Cashier cashier);
         Task<Cashier> GetAdminCashierData();
+        Task CheckCashierAccount(int storeId, int sellerId, int cashierId);
     }
 }

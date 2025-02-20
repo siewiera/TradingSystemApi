@@ -1,3 +1,10 @@
 {
-  "sesstionTime": 2
+  "Session": {
+    "sessionTime": 120,
+    "delay": 30
+  },
+  "Test": {
+    "sessionTime": 260,
+    "delay": 230
+  }
 }

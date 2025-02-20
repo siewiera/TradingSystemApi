@@ -40,6 +40,7 @@ namespace TradingSystemApi.Repositories
         {
             var cashier = await _dbContext
                 .Cashiers
+                .Include (c => c.Session)
                 .Include(c => c.Seller)
                 .FirstOrDefaultAsync(c => c.Username == username && c.SellerId == sellerId && c.Seller.StoreId == storeId);
 
@@ -49,12 +50,24 @@ namespace TradingSystemApi.Repositories
             return cashier;
         }
 
+        public async Task CheckCashierAccount(int storeId, int sellerId, int cashierId) 
+        {
+            var cashier = await GetCashierDataById(storeId, sellerId, cashierId);
+ 
+            if(!cashier.Active)
+                throw new Exception("Cashier is not active");
+            else if(cashier.Blocked)
+                throw new Exception("Cashier is blocked");
+
+        }
+
         /**/
 
         public async Task<Cashier> GetCashierDataById(int storeId, int sellerId, int cashierId)
         {
             var cashier = await _dbContext
                 .Cashiers
+                .Include (c => c.Session)
                 .Include(c => c.Seller)
                 .FirstOrDefaultAsync(c => c.Id == cashierId && c.SellerId == sellerId && c.Seller.StoreId == storeId);
 
@@ -86,6 +99,7 @@ namespace TradingSystemApi.Repositories
         {
             var cashiers = await _dbContext
                 .Cashiers
+                .Include (c => c.Session)
                 .Include(c => c.Seller)
                 .Where(c => c.Seller.StoreId == storeId && c.SellerId == sellerId)
                 .ToListAsync();
