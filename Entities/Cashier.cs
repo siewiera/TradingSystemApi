@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TradingSystemApi.Entities.BusinessEntities.Seller;
+using TradingSystemApi.Entities.Documents;
 using TradingSystemApi.Enum;
 
 namespace TradingSystemApi.Entities
@@ -21,7 +23,7 @@ namespace TradingSystemApi.Entities
         public virtual Seller Seller { get; set; }
 
         public virtual Session Session { get; set; }
-        public virtual ICollection<SalesDocument> SalesDocuments { get; set; }
+        public virtual ICollection<Document> SalesDocuments { get; set; }
         public virtual ICollection<InventoryMovement> InventoryMovements { get; set; }
 
     }

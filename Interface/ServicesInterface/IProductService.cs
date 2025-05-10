@@ -1,4 +1,5 @@
-﻿using TradingSystemApi.Models.Product;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using TradingSystemApi.Models.Product;
 
 namespace TradingSystemApi.Interface.ServicesInterface
 {
@@ -13,5 +14,6 @@ namespace TradingSystemApi.Interface.ServicesInterface
         Task<IEnumerable<ProductDto>> GetProductsDataByName(int storeId, string productName);
         Task<IEnumerable<ProductDto>> GetProductsDataByProductCategoryId(int storeId, int productCategoryId);
         Task UpdateProductDataById(UpdateProductDataDto dto, int storeId, int productId);
+        Task UpdateProductQuantity(int storeId, int productId, decimal quantity);
     }
 }

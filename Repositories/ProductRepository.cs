@@ -54,19 +54,18 @@ namespace TradingSystemApi.Repositories
         public async Task AddNewProduct(Product product)
         {
             await _dbContext.Products.AddRangeAsync(product);
-            await _dbContext.SaveChangesAsync();
         }
 
         public async Task UpdateProductData(Product product)
         {
             _dbContext.Products.Update(product);
-            await _dbContext.SaveChangesAsync();
+            //await _dbContext.SaveChangesAsync();
         }
 
         public async Task DeleteProduct(Product product)
         {
             _dbContext.Products.Remove(product);
-            await _dbContext.SaveChangesAsync();
+            //await _dbContext.SaveChangesAsync();
         }
 
         public async Task<Product> GetProductDataById(int storeId, int productId)

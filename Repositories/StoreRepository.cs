@@ -15,6 +15,13 @@ namespace TradingSystemApi.Repositories
             _dbContext = dbContext;
         }
 
+        public async Task SaveChanges()
+        {
+            await _dbContext.SaveChangesAsync();
+        }
+
+        /**/
+
         public async Task CheckStoreById(int storeId) 
         {
             var store = await _dbContext
@@ -43,10 +50,11 @@ namespace TradingSystemApi.Repositories
         {
             var store = await _dbContext
                 .Stores
-                .Include(s => s.Sellers)
+                .Include(s => s.BusinessEntities)
+                //.Include(s => s.Sellers)
                 .Include(s => s.Adresses)
                 .Include(s => s.Products)
-                .Include(s => s.Customers)
+                //.Include(s => s.Customers)
                 .Include(s => s.SalesDocuments)
                 .Include(s => s.InventoryMovements)
                 .FirstOrDefaultAsync(s => s.Id == storeId);
@@ -61,10 +69,11 @@ namespace TradingSystemApi.Repositories
         {
             var stores = await _dbContext
                     .Stores
-                    .Include(s => s.Sellers)
+                    .Include(s => s.BusinessEntities)
+                    //.Include(s => s.Sellers)
                     .Include(s => s.Adresses)
                     .Include(s => s.Products)
-                    .Include(s => s.Customers)
+                    //.Include(s => s.Customers)
                     .Include(s => s.SalesDocuments)
                     .Include(s => s.InventoryMovements)
                     .Where(s => s.GlobalStore == false)

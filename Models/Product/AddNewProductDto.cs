@@ -18,7 +18,7 @@ namespace TradingSystemApi.Models.Product
         public decimal ProductMargin { get; set; } = 3;
         public bool PercentageMargin { get; set; } = true;
         [Required]
-        public int Quantity { get; set; }
+        public decimal Quantity { get; set; }
         public int StoreId { get; set; }
 
         public int ProductCategoryId { get; set; }

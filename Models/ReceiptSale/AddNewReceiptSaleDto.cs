@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TradingSystemApi.Entities;
+using TradingSystemApi.Models.ReceiptSaleItem;
 
 namespace TradingSystemApi.Models.ReceiptSale
 {
@@ -12,25 +13,13 @@ namespace TradingSystemApi.Models.ReceiptSale
         [Required]
         public DateTime DateOfSale { get; set; }
 
-        public string? InvoiceNo { get; set; }
-
-        //Customer
-        public int? CustomerId { get; set; }
-
         //Store
         public int StoreId { get; set; }
 
         //Cashier
         public int CashierId { get; set; }
 
-
         //ReceiptSaleItem
-        //public ICollection<ReceiptSaleItem> ReceiptSaleItems { get; set; }
-        [Required]
-        public int Quantity { get; set; }
-        [Required]
-        public decimal CostNetPrice { get; set; }
-
-        public int ProductId { get; set; }
+        public ICollection<AddNewReceiptSaleItemDto> AddNewReceiptSaleItemDtos { get; set; }
     }
 }

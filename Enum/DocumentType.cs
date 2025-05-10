@@ -4,6 +4,7 @@
     {
         Receipt = 1,
         SalesInvoice = 2,
-        DeliveryInvoice = 3
+        DeliveryInvoice = 3,
+        CorrectionInvoice = 4
     }
 }

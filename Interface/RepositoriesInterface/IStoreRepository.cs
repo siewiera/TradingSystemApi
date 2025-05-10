@@ -4,6 +4,7 @@ namespace TradingSystemApi.Interface.RepositoriesInterface
 {
     public interface IStoreRepository
     {
+        Task SaveChanges();
         Task AddNewStore(Store store);
         Task CheckStoreNameExists(string name);
         Task DeleteStore(Store store);

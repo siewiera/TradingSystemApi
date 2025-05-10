@@ -57,7 +57,7 @@ namespace TradingSystemApi.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("Adresses");
+                    b.ToTable("Adresses", (string)null);
                 });
 
             modelBuilder.Entity("TradingSystemApi.Entities.Barcode", b =>
@@ -93,7 +93,7 @@ namespace TradingSystemApi.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("Barcodes");
+                    b.ToTable("Barcodes", (string)null);
                 });
 
             modelBuilder.Entity("TradingSystemApi.Entities.Cashier", b =>
@@ -132,7 +132,7 @@ namespace TradingSystemApi.Migrations
 
                     b.HasIndex("SellerId");
 
-                    b.ToTable("Cashiers");
+                    b.ToTable("Cashiers", (string)null);
                 });
 
             modelBuilder.Entity("TradingSystemApi.Entities.Customer", b =>
@@ -164,7 +164,7 @@ namespace TradingSystemApi.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("TradingSystemApi.Entities.InventoryMovement", b =>
@@ -200,7 +200,7 @@ namespace TradingSystemApi.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("InventoryMovements");
+                    b.ToTable("InventoryMovements", (string)null);
                 });
 
             modelBuilder.Entity("TradingSystemApi.Entities.InventoryMovementDetail", b =>
@@ -235,7 +235,7 @@ namespace TradingSystemApi.Migrations
                     b.HasIndex("SalesDocumentItemId")
                         .IsUnique();
 
-                    b.ToTable("InventoryMovementDetails");
+                    b.ToTable("InventoryMovementDetails", (string)null);
                 });
 
             modelBuilder.Entity("TradingSystemApi.Entities.Product", b =>
@@ -272,8 +272,8 @@ namespace TradingSystemApi.Migrations
                     b.Property<decimal>("ProductMargin")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Quantity")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("SellingPrice")
                         .HasColumnType("decimal(18,2)");
@@ -293,7 +293,7 @@ namespace TradingSystemApi.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("TradingSystemApi.Entities.ProductCategory", b =>
@@ -315,7 +315,7 @@ namespace TradingSystemApi.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("ProductCategories");
+                    b.ToTable("ProductCategories", (string)null);
                 });
 
             modelBuilder.Entity("TradingSystemApi.Entities.SalesDocument", b =>
@@ -360,7 +360,7 @@ namespace TradingSystemApi.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("SalesDocuments");
+                    b.ToTable("SalesDocuments", (string)null);
 
                     b.HasDiscriminator<string>("DocumentType").HasValue("SalesDocument");
 
@@ -398,7 +398,7 @@ namespace TradingSystemApi.Migrations
 
                     b.HasIndex("SalesDocumentId");
 
-                    b.ToTable("SalesDocumentItems");
+                    b.ToTable("SalesDocumentItems", (string)null);
 
                     b.HasDiscriminator().HasValue("SalesDocumentItem");
 
@@ -434,7 +434,7 @@ namespace TradingSystemApi.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("Sellers");
+                    b.ToTable("Sellers", (string)null);
                 });
 
             modelBuilder.Entity("TradingSystemApi.Entities.Session", b =>
@@ -471,7 +471,7 @@ namespace TradingSystemApi.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("Sessions");
+                    b.ToTable("Sessions", (string)null);
                 });
 
             modelBuilder.Entity("TradingSystemApi.Entities.Store", b =>
@@ -494,7 +494,7 @@ namespace TradingSystemApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Stores");
+                    b.ToTable("Stores", (string)null);
                 });
 
             modelBuilder.Entity("TradingSystemApi.Entities.InvoiceSale", b =>
@@ -522,11 +522,6 @@ namespace TradingSystemApi.Migrations
                 {
                     b.HasBaseType("TradingSystemApi.Entities.SalesDocumentItem");
 
-                    b.Property<int>("InvoiceSaleId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("InvoiceSaleId");
-
                     b.HasDiscriminator().HasValue("InvoiceSaleItem");
                 });
 
@@ -534,22 +529,12 @@ namespace TradingSystemApi.Migrations
                 {
                     b.HasBaseType("TradingSystemApi.Entities.SalesDocumentItem");
 
-                    b.Property<int>("ReceiptSaleId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("ReceiptSaleId");
-
                     b.HasDiscriminator().HasValue("ReceiptSaleItem");
                 });
 
             modelBuilder.Entity("TradingSystemApi.Entities.SupplyInvoiceItem", b =>
                 {
                     b.HasBaseType("TradingSystemApi.Entities.SalesDocumentItem");
-
-                    b.Property<int>("SupplyInvoiceId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("SupplyInvoiceId");
 
                     b.HasDiscriminator().HasValue("SupplyInvoiceItem");
                 });
@@ -570,7 +555,7 @@ namespace TradingSystemApi.Migrations
                     b.HasOne("TradingSystemApi.Entities.Product", "Product")
                         .WithMany("Barcodes")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("TradingSystemApi.Entities.Store", "Store")
@@ -600,7 +585,7 @@ namespace TradingSystemApi.Migrations
                     b.HasOne("TradingSystemApi.Entities.Adress", "Adress")
                         .WithOne("Customer")
                         .HasForeignKey("TradingSystemApi.Entities.Customer", "AdressId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("TradingSystemApi.Entities.Store", "Store")
@@ -646,7 +631,7 @@ namespace TradingSystemApi.Migrations
                     b.HasOne("TradingSystemApi.Entities.InventoryMovement", "InventoryMovement")
                         .WithMany("InventoryMovementDetails")
                         .HasForeignKey("InventoryMovementId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("TradingSystemApi.Entities.Product", "Products")
@@ -734,7 +719,7 @@ namespace TradingSystemApi.Migrations
                     b.HasOne("TradingSystemApi.Entities.SalesDocument", "SalesDocument")
                         .WithMany("SalesDocumentItems")
                         .HasForeignKey("SalesDocumentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Product");
@@ -747,7 +732,7 @@ namespace TradingSystemApi.Migrations
                     b.HasOne("TradingSystemApi.Entities.Adress", "Adress")
                         .WithOne("Seller")
                         .HasForeignKey("TradingSystemApi.Entities.Seller", "AdressId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("TradingSystemApi.Entities.Store", "Store")
@@ -766,7 +751,7 @@ namespace TradingSystemApi.Migrations
                     b.HasOne("TradingSystemApi.Entities.Cashier", "Cashier")
                         .WithOne("Session")
                         .HasForeignKey("TradingSystemApi.Entities.Session", "CashierId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("TradingSystemApi.Entities.Store", "Store")
@@ -778,39 +763,6 @@ namespace TradingSystemApi.Migrations
                     b.Navigation("Cashier");
 
                     b.Navigation("Store");
-                });
-
-            modelBuilder.Entity("TradingSystemApi.Entities.InvoiceSaleItem", b =>
-                {
-                    b.HasOne("TradingSystemApi.Entities.InvoiceSale", "InvoiceSale")
-                        .WithMany("InvoiceSaleItems")
-                        .HasForeignKey("InvoiceSaleId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("InvoiceSale");
-                });
-
-            modelBuilder.Entity("TradingSystemApi.Entities.ReceiptSaleItem", b =>
-                {
-                    b.HasOne("TradingSystemApi.Entities.ReceiptSale", "ReceiptSale")
-                        .WithMany("ReceiptSaleItems")
-                        .HasForeignKey("ReceiptSaleId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("ReceiptSale");
-                });
-
-            modelBuilder.Entity("TradingSystemApi.Entities.SupplyInvoiceItem", b =>
-                {
-                    b.HasOne("TradingSystemApi.Entities.SupplyInvoice", "SupplyInvoice")
-                        .WithMany("SupplyInvoiceItems")
-                        .HasForeignKey("SupplyInvoiceId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("SupplyInvoice");
                 });
 
             modelBuilder.Entity("TradingSystemApi.Entities.Adress", b =>
@@ -894,21 +846,6 @@ namespace TradingSystemApi.Migrations
                     b.Navigation("Sellers");
 
                     b.Navigation("Sessions");
-                });
-
-            modelBuilder.Entity("TradingSystemApi.Entities.InvoiceSale", b =>
-                {
-                    b.Navigation("InvoiceSaleItems");
-                });
-
-            modelBuilder.Entity("TradingSystemApi.Entities.ReceiptSale", b =>
-                {
-                    b.Navigation("ReceiptSaleItems");
-                });
-
-            modelBuilder.Entity("TradingSystemApi.Entities.SupplyInvoice", b =>
-                {
-                    b.Navigation("SupplyInvoiceItems");
                 });
 #pragma warning restore 612, 618
         }

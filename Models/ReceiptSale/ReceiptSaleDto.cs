@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using TradingSystemApi.Entities;
+using TradingSystemApi.Entities.Documents;
 
 namespace TradingSystemApi.Models.ReceiptSale
 {
@@ -21,7 +21,6 @@ namespace TradingSystemApi.Models.ReceiptSale
 
         public int CashierId { get; set; }
 
-        public ICollection<ReceiptSaleItem> ReceiptSaleItems { get; set; }
-
+        public virtual ICollection<DocumentItem> SalesDocumentItems { get; set; }
     }
 }

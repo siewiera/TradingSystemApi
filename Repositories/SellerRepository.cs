@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TradingSystemApi.Context;
-using TradingSystemApi.Entities;
+using TradingSystemApi.Entities.BusinessEntities.Seller;
 using TradingSystemApi.Exceptions;
 using TradingSystemApi.Interface.RepositoriesInterface;
 using TradingSystemApi.Models.AdressDto;

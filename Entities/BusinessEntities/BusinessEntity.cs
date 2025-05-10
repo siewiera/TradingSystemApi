@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TradingSystemApi.Entities
+namespace TradingSystemApi.Entities.BusinessEntities
 {
-    public class Customer
+    public abstract class BusinessEntity
     {
-        public int Id  { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
@@ -14,8 +14,8 @@ namespace TradingSystemApi.Entities
         public virtual Store Store { get; set; }
 
         public int AdressId { get; set; }
-        public virtual Adress Adress  { get; set; }
+        public virtual Adress Adress { get; set; }
 
-        public virtual ICollection<SalesDocument> SalesDocuments { get; set; }
+        public virtual ICollection<Cashier> Cashiers { get; set; }
     }
 }

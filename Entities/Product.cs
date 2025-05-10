@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TradingSystemApi.Entities.Documents;
 using TradingSystemApi.Enum;
 
 namespace TradingSystemApi.Entities
@@ -22,7 +23,7 @@ namespace TradingSystemApi.Entities
         [Required]
         public decimal SellingPrice { get; set; }
         [Required]
-        public int Quantity { get; set; }
+        public decimal Quantity { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime UpdateDate { get; set; }
 
@@ -33,7 +34,7 @@ namespace TradingSystemApi.Entities
         public virtual ProductCategory ProductCategory { get; set; }
 
         public virtual ICollection<InventoryMovementDetail> InventoryMovementDetails { get; set; }
-        public virtual ICollection<SalesDocumentItem> SalesDocumentItems { get; set; }
+        public virtual ICollection<DocumentItem> SalesDocumentItems { get; set; }
         public virtual ICollection<Barcode> Barcodes { get; set; }
     }
 }

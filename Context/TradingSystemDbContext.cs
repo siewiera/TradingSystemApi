@@ -1,6 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using TradingSystemApi.Entities;
+using TradingSystemApi.Entities.BusinessEntities;
+using TradingSystemApi.Entities.BusinessEntities.Customer;
+using TradingSystemApi.Entities.BusinessEntities.Seller;
+using TradingSystemApi.Entities.Documents;
+using TradingSystemApi.Entities.Documents.Invoice.Purchase;
+using TradingSystemApi.Entities.Documents.Invoice.Sales;
+using TradingSystemApi.Entities.Documents.Receipts;
 using TradingSystemApi.Enum;
 using TradingSystemApi.Models;
 
@@ -17,14 +24,15 @@ namespace TradingSystemApi.Context
 
         public DbSet<Store> Stores { get; set; }
         public DbSet<Adress> Adresses { get; set; }
+        public DbSet<BusinessEntity> BusinessEntities { get; set; }
         public DbSet<Cashier> Cashiers { get; set; }
-        public DbSet<Customer> Customers { get; set; }
+        //public DbSet<Customer> Customers { get; set; }
         public DbSet<InventoryMovement> InventoryMovements { get; set; }
         public DbSet<InventoryMovementDetail> InventoryMovementDetails { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<SalesDocument> SalesDocuments { get; set; }
-        public DbSet<SalesDocumentItem> SalesDocumentItems { get; set; }
-        public DbSet<Seller> Sellers { get; set; }
+        public DbSet<Document> SalesDocuments { get; set; }
+        public DbSet<DocumentItem> SalesDocumentItems { get; set; }
+        //public DbSet<Seller> Sellers { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<Barcode> Barcodes { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
@@ -49,7 +57,7 @@ namespace TradingSystemApi.Context
                 .HasColumnType("datetime2(0)");
             });
 
-            modelBuilder.Entity<SalesDocument>(s => 
+            modelBuilder.Entity<Document>(s => 
             {
                 s.Property(sd => sd.DateOfIssue)
                 .HasColumnType("datetime2(0)");
@@ -105,10 +113,14 @@ namespace TradingSystemApi.Context
                 .HasForeignKey(p => p.StoreId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-                s.HasMany(st => st.Customers)
+                s.HasMany(st => st.BusinessEntities)
                 .WithOne(c => c.Store)
                 .HasForeignKey(c => c.StoreId)
                 .OnDelete(DeleteBehavior.Restrict);
+                //s.HasMany(st => st.Customers)
+                //.WithOne(c => c.Store)
+                //.HasForeignKey(c => c.StoreId)
+                //.OnDelete(DeleteBehavior.Restrict);
 
                 s.HasMany(st => st.SalesDocuments)
                 .WithOne(sd => sd.Store)
@@ -130,67 +142,80 @@ namespace TradingSystemApi.Context
                 .HasOne(se => se.Adress)
                 .WithOne(a => a.Seller)
                 .HasForeignKey<Seller>(se => se.AdressId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Customer>()
                 .HasOne(se => se.Adress)
                 .WithOne(a => a.Customer)
                 .HasForeignKey<Customer>(se => se.AdressId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<SalesDocument>()
+            modelBuilder.Entity<Document>()
                 .HasDiscriminator<string>("DocumentType")
-                .HasValue<InvoiceSale>(DocumentType.SalesInvoice.ToString())
+                .HasValue<SaleInvoice>(DocumentType.SalesInvoice.ToString())
                 .HasValue<ReceiptSale>(DocumentType.Receipt.ToString())
                 .HasValue<SupplyInvoice>(DocumentType.DeliveryInvoice.ToString());
 
-            modelBuilder.Entity<SalesDocument>()
-                .HasMany(s => s.SalesDocumentItems)
-                .WithOne(si => si.SalesDocument)
-                .HasForeignKey(si => si.SalesDocumentId)
-                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Document>()
+                .HasMany(s => s.DocumentItems)
+                .WithOne(si => si.Document)
+                .HasForeignKey(si => si.DocumentId)
+                .OnDelete(DeleteBehavior.Restrict);
+            //.OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<SalesDocument>()
+            modelBuilder.Entity<Document>()
                 .HasOne(sd => sd.InventoryMovement)
-                .WithOne(im => im.SalesDocument)
-                .HasForeignKey<InventoryMovement>(im => im.SalesDocumentId)
+                .WithOne(im => im.Document)
+                .HasForeignKey<InventoryMovement>(im => im.DocumentId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<SalesDocumentItem>()
-                .HasOne(sd => sd.InventoryMovementDetail)
-                .WithOne(im => im.SalesDocumentItem)
-                .HasForeignKey<InventoryMovementDetail>(im => im.SalesDocumentItemId)
-                .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<DocumentItem>()
+            //    .HasOne(sd => sd.InventoryMovementDetail)
+            //    .WithOne(im => im.SalesDocumentItem)
+            //    .HasForeignKey<InventoryMovementDetail>(im => im.SalesDocumentItemId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<SalesDocument>()
+            modelBuilder.Entity<Document>()
                 .HasOne(sd => sd.Cashier)
                 .WithMany(c => c.SalesDocuments)
                 .HasForeignKey(sd => sd.CashierId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<ReceiptSale>()
-                .HasMany(rs => rs.ReceiptSaleItems)
-                .WithOne(ri => ri.ReceiptSale)
-                .HasForeignKey(ri => ri.ReceiptSaleId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasBaseType<Document>();
 
-            modelBuilder.Entity<InvoiceSale>()
-                .HasMany(i => i.InvoiceSaleItems)
-                .WithOne(ii => ii.InvoiceSale)
-                .HasForeignKey(ii => ii.InvoiceSaleId)
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<SaleInvoice>()
+                .HasBaseType<Document>();
 
             modelBuilder.Entity<SupplyInvoice>()
-                .HasMany(s => s.SupplyInvoiceItems)
-                .WithOne(si => si.SupplyInvoice)
-                .HasForeignKey(si => si.SupplyInvoiceId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasBaseType<Document>();
+
+            modelBuilder.Entity<ReceiptSaleItem>()
+                .HasBaseType<DocumentItem>();
+
+            modelBuilder.Entity<SaleInvoiceItem>()
+                .HasBaseType<DocumentItem>();
+
+            modelBuilder.Entity<SupplyInvoiceItem>()
+                .HasBaseType<DocumentItem>();
+
+            //modelBuilder.Entity<InvoiceSale>()
+            //    .HasMany(i => i.InvoiceSaleItems)
+            //    .WithOne(ii => ii.InvoiceSale)
+            //    .HasForeignKey(ii => ii.InvoiceSaleId)
+            //    .OnDelete(DeleteBehavior.Restrict);
+
+            //modelBuilder.Entity<SupplyInvoice>()
+            //    .HasMany(s => s.SupplyInvoiceItems)
+            //    .WithOne(si => si.SupplyInvoice)
+            //    .HasForeignKey(si => si.SupplyInvoiceId)
+            //.OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<InventoryMovement>()
                 .HasMany(im => im.InventoryMovementDetails)
                 .WithOne(d => d.InventoryMovement)
                 .HasForeignKey(d => d.InventoryMovementId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Product>()
                 .HasOne(p => p.ProductCategory)
@@ -202,13 +227,13 @@ namespace TradingSystemApi.Context
                .HasMany(p => p.Barcodes)
                .WithOne(b => b.Product)
                .HasForeignKey(b => b.ProductId)
-               .OnDelete(DeleteBehavior.Cascade);
+               .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Cashier>()
                .HasOne(c => c.Session)
                .WithOne(s => s.Cashier)
                .HasForeignKey<Session>(s => s.CashierId)
-               .OnDelete(DeleteBehavior.Cascade);
+               .OnDelete(DeleteBehavior.Restrict);
 
             //enum conversion
             modelBuilder.Entity<Cashier>()

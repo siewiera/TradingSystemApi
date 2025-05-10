@@ -23,7 +23,7 @@ namespace TradingSystemApi.Models.Product
         [Required]
         public decimal SellingPrice { get; set; }
         [Required]
-        public int Quantity { get; set; }
+        public decimal Quantity { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime UpdateDate { get; set; }
 

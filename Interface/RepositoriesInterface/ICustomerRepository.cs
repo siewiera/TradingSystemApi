@@ -1,4 +1,4 @@
-﻿using TradingSystemApi.Entities;
+﻿using TradingSystemApi.Entities.BusinessEntities.Customer;
 
 namespace TradingSystemApi.Interface.RepositoriesInterface
 {

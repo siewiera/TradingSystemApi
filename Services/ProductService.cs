@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore.Storage;
 using TradingSystemApi.Entities;
 using TradingSystemApi.Enum;
 using TradingSystemApi.Interface.RepositoriesInterface;
@@ -52,6 +53,16 @@ namespace TradingSystemApi.Services
 
             return newProductCode;
         }
+
+        public async Task UpdateProductQuantity(int storeId, int productId, decimal quantity)  
+        {
+            var product = await GetProductDataById(storeId, productId);
+            var productDataDto = new UpdateProductDataDto();
+            productDataDto.Quantity = product.Quantity + quantity;
+
+            //+logika do tabeli przesuniec
+            await UpdateProductDataById(productDataDto, storeId, productId);
+        }   
         /**/
 
 
@@ -69,6 +80,7 @@ namespace TradingSystemApi.Services
 
             await _productRepository.CheckProductDataExists(storeId, dto.Name);
             await _productRepository.AddNewProduct(product);
+            await _storeRepository.SaveChanges();
 
             return product.Id;
         }
@@ -77,23 +89,25 @@ namespace TradingSystemApi.Services
         {
             await _storeRepository.CheckStoreById(storeId);
             var product = await _productRepository.GetProductDataById(storeId, productId);
-            await _productCategoryRepository.GetProductCategoryDataById(storeId, dto.ProductCategoryId);
+            await _productCategoryRepository.GetProductCategoryDataById(storeId, dto.ProductCategoryId ?? product.ProductCategoryId);
 
             if (product.Name != dto.Name)
                 await _productRepository.CheckProductDataExists(storeId, dto.Name);
 
-            product.Name = dto.Name;
-            product.JM = dto.JM;
-            product.CostNetPrice = dto.CostNetPrice;
-            product.Vat = dto.Vat;
-            product.ProductMargin = dto.ProductMargin;
-            product.PercentageMargin = dto.PercentageMargin;
-            product.SellingPrice = CalculateMargin(dto.CostNetPrice, dto.ProductMargin, dto.PercentageMargin);
-            product.Quantity = dto.Quantity;
-            product.ProductCategoryId = dto.ProductCategoryId;
+            product.Name = dto.Name ?? product.Name;
+            product.JM = dto.JM ?? product.JM;
+            product.CostNetPrice = dto.CostNetPrice ?? product.CostNetPrice;
+            product.Vat = dto.Vat ?? product.Vat;
+            product.ProductMargin = dto.ProductMargin ?? product.ProductMargin;
+            product.PercentageMargin = dto.PercentageMargin ?? product.PercentageMargin;
+            product.SellingPrice = CalculateMargin(dto.CostNetPrice ?? product.CostNetPrice, dto.ProductMargin ?? product.ProductMargin, 
+                dto.PercentageMargin ?? product.PercentageMargin);
+            product.Quantity = dto.Quantity ?? product.Quantity;
+            product.ProductCategoryId = dto.ProductCategoryId ?? product.ProductCategoryId;
             product.UpdateDate = DateTime.Now;
 
             await _productRepository.UpdateProductData(product);
+            await _storeRepository.SaveChanges();
         }
 
         public async Task DeleteProductById(int storeId, int productId)
@@ -101,6 +115,7 @@ namespace TradingSystemApi.Services
             await _storeRepository.CheckStoreById(storeId);
             var product = await _productRepository.GetProductDataById(storeId, productId);
             await _productRepository.DeleteProduct(product);
+            await _storeRepository.SaveChanges();
         }
 
         public async Task<ProductDto> GetProductDataById(int storeId, int productId)

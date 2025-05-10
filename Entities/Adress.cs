@@ -1,4 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TradingSystemApi.Entities.BusinessEntities;
+using TradingSystemApi.Entities.BusinessEntities.Customer;
+using TradingSystemApi.Entities.BusinessEntities.Seller;
 
 namespace TradingSystemApi.Entities
 {
@@ -16,7 +19,8 @@ namespace TradingSystemApi.Entities
         public int StoreId { get; set; }
         public virtual Store Store { get; set; }
 
-        public virtual Customer Customer { get; set; }
-        public virtual Seller Seller { get; set; }
+        public virtual BusinessEntity BusinessEntity{ get; set; }
+        //public virtual Customer Customer { get; set; }
+        //public virtual Seller Seller { get; set; }
     }
 }
